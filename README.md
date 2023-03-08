@@ -1,2 +1,1 @@
-# alx-system_engineering-devops
-For alx-system_engineering-devops project
+a repo for alx-system_engineering-devops project
