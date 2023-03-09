@@ -1,2 +1,2 @@
 #!/bin/bash
-chmod -R u=rwx,go=rx,a-s ./*
+chmod -R 755 */
