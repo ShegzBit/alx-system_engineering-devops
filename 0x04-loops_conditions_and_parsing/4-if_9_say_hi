@@ -5,12 +5,12 @@
 i=0
 
 while (( i<10 ))
-do
+do	
+	echo "Best School"
+
 	if (( i==8 ))
 	then
 		echo "Hi"
-	else
-		echo "Best School"
 	fi
 	(( i++ ))
 done
