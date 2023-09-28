@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+# Prints all content of a the current directory in a list format
+
+list_pwd=$(ls)
+
+for i in $list_pwd;
+do
+	echo "${i#*-}"
+done
