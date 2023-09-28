@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+# A program that tries to print Best School 10 times but just can't help itself
+#+ and print Hi on the 9th line
+
+i=1
+
+while (( i<=10 ))
+do
+	if (( i!=9 ))
+	then
+		echo "Best School"
+	else
+		echo "Hi"
+	fi
+	(( i++ ))
+done
+		
