@@ -1,0 +1,19 @@
+#!/usr/bin/env bash
+# prints badluck for 4 and 8 for goodluck and for the rest of
+#+ iteration of count 10
+
+i=1
+
+while (( i<=10 ))
+do
+	if (( i==4 ))
+	then
+		echo "bad luck"
+	elif (( i==8 ))
+	then
+		echo "good luck"
+	else
+		echo "Best School"
+	fi
+	(( i++ ))
+done
