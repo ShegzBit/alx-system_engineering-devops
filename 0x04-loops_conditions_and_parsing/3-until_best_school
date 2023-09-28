@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+# A script that prints Best School to screen using until
+
+i=0
+
+until (( i==10 ))
+do
+	echo "Best School"
+	((i++))
+done
