@@ -2,15 +2,15 @@
 # A program that tries to print Best School 10 times but just can't help itself
 #+ and print Hi on the 9th line
 
-i=1
+i=0
 
-while (( i<=10 ))
+while (( i<10 ))
 do
-	if (( i!=9 ))
+	if (( i==8 ))
 	then
-		echo "Best School"
-	else
 		echo "Hi"
+	else
+		echo "Best School"
 	fi
 	(( i++ ))
 done
