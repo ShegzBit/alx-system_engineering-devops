@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# Kills the 4 and beyond project
+
+pkill -f "infinity_and_beyond"
