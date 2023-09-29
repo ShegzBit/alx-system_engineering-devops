@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
 # This script reads from etc/passwd and prints the username, g_id, and home dir
 
-awk '{print $1}'  apache-access.log
+awk '{print $1, $9}'  apache-access.log
