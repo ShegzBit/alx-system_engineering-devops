@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# A script that prints the pid of the pid of bash and the current script
+
+echo "$$ bash"
+pid=$(pidof $bash)
+echo "$pid bash"
