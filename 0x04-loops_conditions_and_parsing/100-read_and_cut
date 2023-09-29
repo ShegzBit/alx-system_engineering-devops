@@ -1,2 +1,7 @@
 #!/usr/bin/env bash
 # This script reads from etc/passwd and prints the username, g_id, and home dir
+
+while read -r file
+do
+	echo "$file"
+done < "/etc/passwd"
