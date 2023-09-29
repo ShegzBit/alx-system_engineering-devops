@@ -2,4 +2,4 @@
 # this script tried to stop the 4-infinite_loop script
 
 script=$(pidof -s 4-to_infinity_and_beyond)
-kill -9 "$script"
+kill "$script"
