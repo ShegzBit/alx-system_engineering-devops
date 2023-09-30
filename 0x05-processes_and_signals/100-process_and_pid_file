@@ -17,8 +17,9 @@ function cleanup()
 {
 	file="$1"
 	rm "$file"
+	exit
 }
-trap cleanup SIGQUIT SIGTERM
+trap cleanup "/var/run/myscript.pi" SIGQUIT SIGTERM
 
 my_pid="$$"
 
