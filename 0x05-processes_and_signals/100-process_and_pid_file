@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# A script for practicing use of trap
+
+function hate()
+{
+	echo "I hate the kill command"
+}
+trap hate SIGTERM
+
+function love()
+{
+	echo "Y U no love me?!"
+}
+trap love SIGINT
+
+function cleanup()
+{
+	file="$1"
+	rm "$file"
+}
+trap cleanup SIGQUIT SIGTERM
+
+my_pid="$$"
+
+mkdir -p /var/run
+echo "$my_pid" > /var/run/myscript.pid
+
+while ((1))
+do
+	echo "To infinity and beyond"
+done
