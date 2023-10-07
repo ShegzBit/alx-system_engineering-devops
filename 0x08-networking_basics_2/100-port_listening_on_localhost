@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
 # task 3
+
+nc -l 98
