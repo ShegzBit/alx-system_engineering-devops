@@ -1,4 +1,4 @@
-# create a file in puppet
+/* create a file in puppet */
 file { '/tmp/school':
 mode => '0744',
 owner => 'www-data',
