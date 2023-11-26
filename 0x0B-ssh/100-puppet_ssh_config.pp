@@ -11,5 +11,6 @@ Host *
     PassWordAuthentication no
     SendEnv LANG LC_*
     HashKnownHosts yes
-    GSSAPIAuthentication yes',
+    GSSAPIAuthentication yes
+'
 }
