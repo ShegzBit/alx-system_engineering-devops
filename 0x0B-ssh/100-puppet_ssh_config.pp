@@ -3,7 +3,7 @@
 file { '/root/.ssh/config':
   ensure  => 'present',
   owner   => 'root',
-  groupt  => 'root',
+  group   => 'root',
   content => '# A puppeteer for my configuration file
 Host *
     IdentityFile ~/.ssh/school
