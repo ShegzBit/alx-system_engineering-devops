@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# a script that creates a new key pair
+# filename school passphrase betty
+
+ssh-keygen -f school -N betty -b 4096
