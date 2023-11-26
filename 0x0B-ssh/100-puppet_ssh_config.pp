@@ -1,7 +1,7 @@
 # a puppet script to configure our ssh_config file
 
 file { '/root/.ssh/config':
-  ensure  => 'file',
+  ensure  => 'present',
   owner   => 'root',
   groupt  => 'root',
   content => '# A puppeteer for my configuration file
