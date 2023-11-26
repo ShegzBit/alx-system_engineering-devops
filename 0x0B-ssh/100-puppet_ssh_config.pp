@@ -2,6 +2,8 @@
 
 file { '/root/.ssh/config':
   ensure  => 'file',
+  owner   => 'root',
+  groupt  => 'root',
   content => '# A puppeteer for my configuration file
 Host *
     IdentityFile ~/.ssh/school
