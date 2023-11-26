@@ -9,8 +9,5 @@ file { '/root/.ssh/config':
 Host *
     IdentityFile ~/.ssh/school
     PassWordAuthentication no
-    SendEnv LANG LC_*
-    HashKnownHosts yes
-    GSSAPIAuthentication yes
 '
 }
