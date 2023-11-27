@@ -13,4 +13,4 @@ then
 fi
 
 echo "    PasswordAuthentication no" >> ~/.ssh/ssh_config
-scp -i "$idfile" "$file" "$usr@$addr:~"
+scp -i "$idfile" -o StrictHostKeyChecking=no "$file" "$usr@$addr:~"
