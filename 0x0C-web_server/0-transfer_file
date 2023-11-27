@@ -12,4 +12,5 @@ then
 	exit
 fi
 
+echo "    PasswordAuthentication no" >> ~/.ssh/ssh_config
 scp -i "$idfile" "$file" "$usr@$addr:~"
