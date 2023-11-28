@@ -4,7 +4,7 @@
 apt-get update
 apt-get install nginx -y
 ufw allow 80;
-echo 'server {
+echo -e 'server {
 	listen 80;
 	listen [::]:80;
 
