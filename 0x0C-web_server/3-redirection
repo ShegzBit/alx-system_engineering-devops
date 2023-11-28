@@ -4,17 +4,9 @@
 apt-get update
 apt-get install nginx -y
 ufw allow 80;
-echo -e 'server {
-	listen 80;
-	listen [::]:80;
-
-	server_name _;
-	
-	location / {
-		return 200 "Hello World!\\n";
-	}
-	location /redirect_me {
-		return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;
-	}
-}' | cat > /etc/nginx/sites-available/default
+echo "Hello World!" > /var/www/html/index*.html
+sed -i "0,/}/s//}\
+	location \/redirect_me {\
+		return 301 \$scheme:\/\/https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\
+	}/g" /etc/nginx/sites-available/default
 service nginx restart
