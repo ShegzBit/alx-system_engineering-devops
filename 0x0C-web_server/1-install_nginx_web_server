@@ -2,5 +2,5 @@
 # sets up nginx on a server and changes the default html
 
 apt-get install nginx -y
-sudo echo "Hello World!" > /var/www/html/index*.html
-sudo service nginx restart
+echo "Hello World!" > /var/www/html/index*.html
+service nginx restart
