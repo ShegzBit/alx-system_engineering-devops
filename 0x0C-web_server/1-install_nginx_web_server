@@ -1,1 +1,6 @@
 #!/usr/bin/env bash
+# sets up nginx on a server and changes the default html
+
+apt-get install nginx
+sudo echo "Hello World!" > /var/www/html/index*.html
+sudo service nginx restart
