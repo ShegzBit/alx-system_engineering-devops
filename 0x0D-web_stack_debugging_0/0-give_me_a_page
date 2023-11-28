@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+# script to create a docker and open a apache web server on it
+
+# place holder
+echo "Hello Holberton"
