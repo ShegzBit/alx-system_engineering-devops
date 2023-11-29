@@ -1,13 +1,18 @@
 # a puppet script to configure our ssh_config file
 
 file { '/etc/ssh/ssh_config':
-  ensure  => 'present',
-  content => '# A puppeteer for my configuration file
-Host *
-    IdentityFile ~/.ssh/school
-    PassWordAuthentication no
-    SendEnv LANG LC_*
-    HashKnownHosts yes
-    GSSAPIAuthentication yes
-'
+  ensure => 'present',
+  path   => '/etc/ssh/ssh_config',
+}
+
+file_line { 'no pass word':
+  path  => '/etc/ssh/ssh_config',
+  line  => '    PasswordAuthentication no',
+  match => '^PasswordAuthentication',
+}
+
+file_line { 'set my identiy file':
+  path  => '/etc/ssh/ssh_config',
+  line  => '    IdentityFile ~/.ssh/school',
+  match => '^IdentityFile',
 }
