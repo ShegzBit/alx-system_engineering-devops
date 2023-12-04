@@ -1,12 +1,10 @@
 #!/usr/bin/env bash
 # a script for creating 301 redirection
 
-apt-get update
-apt-get install nginx -y
-ufw allow 80;
+#apt-get update
+#apt-get install nginx -y
+#ufw allow 80;
 echo "Hello World!" > /var/www/html/index*.html
-sed -i "0,/server_name _;/s//server_name _;\n\
-	location \/redirect_me {\n\
-		return 301 \$scheme:\/\/https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n\
-	}\n/g" /etc/nginx/sites-available/default
-service nginx restart
+line="\tlocation \/redirect_me {\n\t\treturn 301 https:\/\/www.youtube.com\/watch?v=QH2-TGUlwu4;\n}"
+sed -i "/server_name _;/a\\$line" /etc/nginx/sites-available/default
+sudo service nginx restart
