@@ -6,12 +6,16 @@ sudo apt-get -y haproxy
 sudo chown -R "$USER":"sudo" /etc/haproxy
 
 CONFIGURATION="\
-backend roundrobin
-   server 
-
 frontent http
    bind *:80
    mode http
-   
-   default_backend web-backend"
-echo "$CONFIGURATION" > /etc/haproxy/haproxy.cfg
+   default_backend mybackends
+
+backend mybackends
+   balance roundrobin
+   server 134177-web-01 54.90.34.141:80 check
+   server 134177-web-02 34.229.49.23:80 check
+ "
+echo -e "$CONFIGURATION" >> /etc/haproxy/haproxy.cfg
+
+sudo service haproxy restart
