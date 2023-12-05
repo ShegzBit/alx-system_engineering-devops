@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 # In this first task you need to configure web-02 to be identical to web-01
 
-#sudo apt-get update
-#sudo apt-get nginx -y
+sudo apt-get update
+sudo apt-get nginx -y
 
 sudo chown -R "$USER":"sudo" /var/www/html
 
@@ -13,6 +13,8 @@ REDIRECT="\
         }\n"
 
 sudo sed -i "/server_name _;/a\ $REDIRECT" "$config"
+
+echo "Ceci n'est pas une page" > /var/www/html/404.html
 
 F04="\terror_page 404 /404.html;\n"
 R2404="\
