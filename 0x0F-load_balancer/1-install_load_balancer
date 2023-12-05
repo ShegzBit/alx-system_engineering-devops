@@ -1,1 +1,17 @@
 #!/usr/bin/env bash
+# ha proxy script
+
+sudo apt-get update
+sudo apt-get -y haproxy
+sudo chown -R "$USER":"sudo" /etc/haproxy
+
+CONFIGURATION="\
+backend roundrobin
+   server 
+
+frontent http
+   bind *:80
+   mode http
+   
+   default_backend web-backend"
+echo "$CONFIGURATION" > /etc/haproxy/haproxy.cfg

@@ -1,32 +1,33 @@
 #!/usr/bin/env bash
-# Configure `Nginx` web server so that each server contains its hostname in its response header
+# In this first task you need to configure web-02 to be identical to web-01
+
 sudo apt-get update
-sudo apt-get install nginx -y
+sudo apt-get nginx -y
 
-# Add `index.html` file that contains 'Hello World!
-echo "Hello World!" > index.html
+sudo chown -R "$USER":"sudo" /var/www/html
 
-# Move the file to where Nginx serves its web pages
-sudo mv index.html /var/www/html/
+config="/etc/nginx/sites-available/default"
+REDIRECT="\
+        location /redirect {\n\
+                return 301 https://www.google.com/;\n\
+        }\n"
 
-# Redirect the link to youtube
-REDIRECT_RULE="\n\tlocation /redirect_me {\n\
-		           return 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\
-		       }"
-sudo sed -i "/server_name _;/a \ $REDIRECT_RULE" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a\ $REDIRECT" "$config"
+sudo sed -i "/try_files.*=404/s/^/# /" "$config"
 
-# Configure custom error 404
-echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+echo "Ceci n'est pas une page" > /var/www/html/404.html
 
-sudo sed -i "/server_name _;/a \ \n\terror_page 404 /404.html;" /etc/nginx/sites-available/default
-sudo sed -i '/try_files.*=404/s/^/#/' /etc/nginx/sites-available/default
-E404_RULE="\tlocation /404.html {\n\
-        \troot /var/www/html;\n\
-	\tinternal;\n\
-	}"
-sudo sed -i "/error_page.*404.*;/a \ $E404_RULE" /etc/nginx/sites-available/default
+F04="\terror_page 404 /404.html;\n"
+R2404="\
+        location /404.html {\n\
+                root /var/www/html;\n\
+                internal;\n\
+        }\n"
 
-# Configure a custom header
-sudo sed -i "/server_name _;/a \ \n\tadd_header X-Served-By \"$(hostname)\";" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a\ $R2404" "$config"
+sudo sed -i "/server_name _;/a\ $F04" "$config"
+
+header="\tadd_header X-Served-By \$hostname;\n"
+sudo sed -i "/location \/ {/a\\$header" "$config"
 
 sudo service nginx restart
