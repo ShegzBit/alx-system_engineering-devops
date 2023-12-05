@@ -2,11 +2,11 @@
 # ha proxy script
 
 sudo apt-get update
-sudo apt-get -y haproxy
+sudo apt-get install -y haproxy
 sudo chown -R "$USER":"sudo" /etc/haproxy
 
 CONFIGURATION="\
-frontent http
+frontend http
    bind *:80
    mode http
    default_backend mybackends
