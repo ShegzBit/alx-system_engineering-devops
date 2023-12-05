@@ -1,11 +1,27 @@
 #!/usr/bin/env bash
-# custom 404
+# a script for creating 301 redirection
 
-apt-get update
-apt-get install nginx
-ufw allow 80;
+sudo apt-get update
+sudo apt-get install nginx -y
+sudo ufw allow 80;
+
+sudo chown -R "$USER":"sudo" /var/www/html
+echo "Hello World!" > /var/www/html/index.html
+REDIRECT="\
+	location /redirect {\n\
+		return 301 https://www.google.com/;\n\
+	}\n"
+
+sudo sed -i "/server_name _;/a\ $REDIRECT" /etc/nginx/sites-available/default
 
 echo "Ceci n'est pas une page" > /var/www/html/404.html
-sed -i '0,/server_name _;/s//server_name _;\
-	error_page 404 \/404.html;/g' /etc/nginx/sites-available/default
-service nginx restart
+F04="\terror_page 404 /404.html;"
+R2404="\
+	location /404.html {\n\
+		root /var/www/html/;\n\
+		internal;\n\
+	}"
+sudo sed -i "/server_name _;/a\ $R2404" /etc/nginx/sites-available/default
+sudo sed -i "/server_name _;/a\ $F04" /etc/nginx/sites-available/default
+
+sudo service nginx restart
