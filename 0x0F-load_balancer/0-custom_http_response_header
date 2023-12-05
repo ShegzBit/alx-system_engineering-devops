@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# In this first task you need to configure web-02 to be identical to web-01
+
+#sudo apt-get update
+#sudo apt-get nginx -y
+
+sudo chown -R "$USER":"sudo" /var/www/html
+
+config="/etc/nginx/sites-available/default"
+REDIRECT="\
+        location /redirect {\n\
+                return 301 https://www.google.com/;\n\
+        }\n"
+
+sudo sed -i "/server_name _;/a\ $REDIRECT" "$config"
+
+F04="\terror_page 404 /404.html;\n"
+R2404="\
+	location /404.html {\n\
+		root /var/www/html;\n\
+		internal;\n\
+	}\n"
+
+sudo sed -i "/server_name _;/a\ $R2404" "$config"
+sudo sed -i "/server_name _;/a\ $F04" "$config"
+
+header="\tadd_header X-Served-By \$hostname;\n"
+sudo sed -i "/location \/ {/a\\$header" "$config"
+
+sudo service nginx restart
