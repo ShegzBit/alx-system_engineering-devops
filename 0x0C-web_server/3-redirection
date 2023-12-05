@@ -3,9 +3,8 @@
 
 sudo apt-get update
 sudo apt-get install nginx -y
-sudo ufw allow 80;
 
-echo "Hello World!" | sudo tee /var/www/index*.html
+echo "Hello World!" | sudo tee /var/www/html/index.html
 REDIRECT="\
 	location /redirect {\n\
 		return 301 https://www.google.com/;\n\
