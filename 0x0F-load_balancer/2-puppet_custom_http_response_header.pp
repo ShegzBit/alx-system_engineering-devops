@@ -22,5 +22,5 @@ exec {'configure_header':
 
 exec{'nginx_restart':
   command => 'service nginx restart',
-  path    => ['/usr/bin', '/usr/sbin', '/bin'],
+  path    => ['/usr/bin'],
 }
