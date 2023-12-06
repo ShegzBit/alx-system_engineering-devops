@@ -20,8 +20,7 @@ exec {'configure_header':
   path    => ['/usr/bin', '/bin'],
 }
 
-service {'restart_nginx':
-  ensure => 'running',
-  name   => 'nginx',
-  enable => 'true',
+exec{'nginx_restart':
+  command => 'service nginx restart',
+  path    => ['/usr/bin', '/usr/sbin', '/bin'],
 }
