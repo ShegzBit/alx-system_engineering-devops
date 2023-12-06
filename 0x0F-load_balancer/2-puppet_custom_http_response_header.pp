@@ -3,7 +3,7 @@
 
 exec {'get update':
   command => '/usr/bin/apt-get update -y',
-  path    => ['/usr/bin, /usr/sbin'],
+  path    => ['/usr/bin'],
 }
 
 package {'nginx':
