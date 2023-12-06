@@ -33,7 +33,7 @@ exec {'append':
 }
 
 service {'restart':
-  ensure     => running,
-  name       => 'nginx',
-  enable     => 'true',
+  ensure => running,
+  name   => 'nginx',
+  enable => 'true',
 }
