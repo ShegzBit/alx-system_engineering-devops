@@ -7,9 +7,9 @@ dig_url () {
 	echo "A subdomain $2 is a $rec record and points at $ip"
 }
 
-if [[ $# -eq 2 ]]; then
+if [[ "$#" -eq 2 ]]; then
        	dig_url "$1" "$2"
-elif [[ $# -eq 1 ]]; then
+elif [[ "$#" -eq 1 ]]; then
 	subdomains=("www" "lb-01" "web-01" "web-02")
 	for subdomain in "${subdomains[@]}"; do
 		dig_url "$1" "$subdomain"
