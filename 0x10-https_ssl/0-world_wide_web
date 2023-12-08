@@ -3,16 +3,15 @@
 # shellcheck disable=SC2086
 
 dig_url () {
-rec_ip="$(dig $2.$1 | awk '/ANSWER SECTION:/ {getline; print $4, $5}')"
-read -ra values <<< "$rec_ip"
-echo "A subdomain $2 is a ${values[0]} record and points at ${values[1]}"
+rec="$(dig $2.$1 | awk '/ANSWER SECTION:/ {getline; print $4}')"
+ip="$(dig $2.$1 | awk '/ANSWER SECTION:/ {getline; print $5}')"
+echo "A subdomain $2 is a $rec record and points at $ip"
 }
 
-if [[ $# -eq 2 ]]; then
-       	dig_url "$1" "$2"
-elif [[ $# -eq 1 ]]; then
+[[ $# -eq 2 ]] && dig_url "$1" "$2"
+[[ $# -eq 1 ]] && (
 	subs=("www" "lb-01" "web-01" "web-02")
 	for sub in "${subs[@]}"; do
 		dig_url "$1" "$sub"
 	done
-fi
+)
