@@ -22,7 +22,7 @@ dig_subdomain () {
 }
 
 dig_all () {
-        subdomains=("www" "web-01" "lb-01" "web-02")
+        subdomains=("www" "lb-01" "web-01" "web-02")
         for subdomain in "${subdomains[@]}"; do
                 dig_subdomain "$1" "$subdomain"
 		digged_values=()
