@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 # a Bash script that will display information about subdomains
+# shellcheck disable=SC2086
 
 dig_url () {
-	rec=$(dig $2.$1 | awk '/ANSWER SECTION:/ {getline; print $4}')
-	ip=$(dig $2.$1 | awk '/ANSWER SECTION:/ {getline; print $5}')
-	echo "A subdomain $2 is a $rec record and points at $ip"
+        output=$(dig "$2"."$1")
+        rec=$(echo "$output" | awk '/ANSWER SECTION:/ {getline; print $4}')
+        ip=$(echo "$output" | awk '/ANSWER SECTION:/ {getline; print $5}')
+        echo "The subdomain $2 is a $rec record and points to $ip"
 }
 
 if [ "$#" -eq 2 ]; then
-       	dig_url "$1" "$2"
+        dig_url "$1" "$2"
 elif [ "$#" -eq 1 ]; then
-	subdomains=("www" "lb-01" "web-01" "web-02")
-	for subdomain in "${subdomains[@]}"; do
-		dig_url "$1" "$subdomain"
-	done
+        subdomains=("www" "lb-01" "web-01" "web-02")
+        for subdomain in "${subdomains[@]}"; do
+                dig_url "$1" "$subdomain"
+        done
 fi
+
