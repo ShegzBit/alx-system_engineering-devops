@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# a Bash script that will display information about subdomains
+# shellcheck disable=SC2086
+
+digged_values=()
+extracted_values=()
+
+dig_values () {
+	value="$(dig "$1" | awk '/ANSWER SECTION:/ {found=1; next} found {found=0; print}')"
+	value="$(echo -e "$value" | cat)"
+	digged_values+=("$value")
+}
+
+dig_subdomain () {
+	subD="$2"."$1"
+	dig_values "$subD"
+	extract_values
+	record="${extracted_values[3]}"
+	ip="${extracted_values[4]}"
+	subdomain="$2"
+	echo "A subdomain $subdomain is a $record record and points to $ip"
+}
+
+dig_all () {
+        subdomains=("www" "web-01" "lb-01" "web-02")
+        for subdomain in "${subdomains[@]}"; do
+                dig_subdomain "$1" "$subdomain"
+		digged_values=()
+		extracted_values=()
+        done
+}
+
+extract_values () {
+	for value in "${digged_values[@]}"; do
+		extracted_values+=($value)
+	done
+}
+
+( [[ $# -eq 1 ]] && dig_all "$1" ) || ( [[ $# -eq 2 ]] && dig_subdomain "$1" "$2" )
