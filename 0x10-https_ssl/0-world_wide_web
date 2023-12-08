@@ -8,10 +8,11 @@ read -ra values <<< "$rec_ip"
 echo "A subdomain $2 is a ${values[0]} record and points at ${values[1]}"
 }
 
-[[ $# -eq 2 ]] && dig_url "$1" "$2"
-[[ $# -eq 1 ]] && (
+if [[ $# -eq 2 ]]; then
+       	dig_url "$1" "$2"
+elif [[ $# -eq 1 ]]; then
 	subs=("www" "lb-01" "web-01" "web-02")
 	for sub in "${subs[@]}"; do
 		dig_url "$1" "$sub"
 	done
-)
+fi
