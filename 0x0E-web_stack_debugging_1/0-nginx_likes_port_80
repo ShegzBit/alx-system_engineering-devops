@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
 # a script to open port 80 on web sandbox
 
-sed -i 's[\d]+ default_server/80 default_server' /etc/nginx/sites-enabled/default
+ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx restart
