@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+# runs whoami on a user passed to script
+
+sudo -u "$1" 'whoami'
