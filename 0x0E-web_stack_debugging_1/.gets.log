@@ -1,0 +1,37 @@
+
+
+Mon Dec 18 04:14:58 WAT 2023
+Entered URL
+++++++++++++++++++++++++++++++++++++++++++++++++++
+https://github.com/alx-tools/0x01-Fix_My_Code_Challenge/tree/master/status_server/
+++++++++++++++++++++++++++++++++++++++++++++++++++
+================================================
+https://github.com/alx-tools/0x01-Fix_My_Code_Challenge/tree/master/status_server/...
+Filename from repo 
+
+Local filename 
+dir_name ------>>>>>> 
+['https://github.com/alx-tools/0x01-Fix_My_Code_Challenge/tree/master/status_server/']
+Traceback (most recent call last):
+  File "/home/shegz/.git_file/.py_get", line 147, in curl
+    raw_lines = my_response['payload']['blob']['rawLines']
+KeyError: 'blob'
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/home/shegz/.git_file/.py_get", line 291, in <module>
+    main(args)
+  File "/home/shegz/.git_file/.py_get", line 286, in main
+    abstract_handler_M(new_args)
+  File "/home/shegz/.git_file/.py_get", line 281, in abstract_handler_M
+    get_args(arg)
+  File "/home/shegz/.git_file/.py_get", line 225, in get_args
+    git_file(path, isTrunc, filename)
+  File "/home/shegz/.git_file/.py_get", line 169, in git_file
+    file_lines = curl(path)
+  File "/home/shegz/.git_file/.py_get", line 154, in curl
+    get_files_in_dir(path, my_response)
+  File "/home/shegz/.git_file/.py_get", line 124, in get_files_in_dir
+    os.mkdir(dir_name)
+FileNotFoundError: [Errno 2] No such file or directory: ''
