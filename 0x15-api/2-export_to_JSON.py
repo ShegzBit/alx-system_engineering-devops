@@ -22,7 +22,7 @@ if __name__ == "__main__":
                                   params={'id': user_id})
                      .json()[0].get('username'))
 
-    with open(f'{user_id}.csv', 'w') as f:
+    with open(f'{user_id}.json', 'w') as f:
         formatted = []
         for user in todo_list:
             new_task = ({'task': user.get('title'),
