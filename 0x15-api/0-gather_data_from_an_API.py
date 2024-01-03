@@ -21,6 +21,6 @@ if __name__ == "__main__":
     NUMBER_OF_DONE_TASKS = len(completed)
     TOTAL_NUMBER_OF_TASKS = len(todo_list)
     print(f'Employee {EMPLOYEE_NAME} is done with\
-tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):')
+ tasks({NUMBER_OF_DONE_TASKS}/{TOTAL_NUMBER_OF_TASKS}):')
     for title in completed:
         print(f'\t {title}')
