@@ -15,8 +15,7 @@ if __name__ == "__main__":
     todos = requests.get('https://jsonplaceholder.typicode.com/todos',
                          params=data)
     todo_list = todos.json()
-    completed = ([x.get('title') for x in todo_list
-                 if x.get('completed') is True])
+    completed = ([x.get('title') for x in todo_list])
 
     EMPLOYEE_NAME = (requests.get('https://jsonplaceholder.typicode.com/users',
                                   params={'id': user_id})
