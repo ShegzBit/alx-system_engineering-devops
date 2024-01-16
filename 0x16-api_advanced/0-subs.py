@@ -12,8 +12,9 @@ def number_of_subscribers(subreddit):
 
     subreddit: subreddit to scrape for
     """
-    try:
-        body = requests.get(f'https://www.reddit.com/r/{subreddit}/about.json')
-        return body.json()['data']['subscribers']
-    except KeyError:
+    body = requests.get(f'https://www.reddit.com/r/{subreddit}/about.json',
+                        headers={'User-Agent': 'My-Agent'},
+                        allow_redirects=False)
+    if body.status_code >= 300:
         return 0
+    return body.json()['data']['subscribers']
